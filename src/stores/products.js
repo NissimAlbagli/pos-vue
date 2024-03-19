@@ -1,7 +1,11 @@
 import { defineStore } from 'pinia';
 import { computed } from 'vue';
+import { useFirestore } from 'vuefire';
+import { collection, addDoc } from 'firebase/firestore';
 
 export const useProductsStore = defineStore('products', () => {
+
+    const db = useFirestore();
 
     const categories = [
         { id: 1, name: 'Polerones'},
@@ -10,7 +14,7 @@ export const useProductsStore = defineStore('products', () => {
     ]
 
     async function createProduct(product) {
-        console.log(product);
+        await addDoc(collection(db, 'products'), product)
     }
 
     const categoryOptions = computed(() => {
