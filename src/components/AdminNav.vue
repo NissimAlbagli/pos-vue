@@ -11,11 +11,10 @@
 
         <nav>
             <Link
-                to="admin"
+                to="shop"
             >
-            Administrar
+                Ir a Tienda
             </Link>
         </nav>
     </header>
 </template>
-
