@@ -1,5 +1,8 @@
 <script setup>
-    import Link from '@/components/Link.vue'
+    import Link from '@/components/Link.vue';
+    import useImage from '@/composables/useImage';
+
+    const { url ,onFileChange, isImageUplodaded } = useImage();
 </script>
 
 <template>
@@ -15,6 +18,7 @@
                 <FormKit
                     type="form"
                     submit-label="Agregar Producto"
+                    incomplete-message="No se pudo enviar, revisa que todos los campos esten completos"
                 >
                     <FormKit 
                         type="text"
@@ -32,7 +36,18 @@
                         validation="required"
                         :validation-messages="{required: 'La Imagen del Producto es Obligatoria'}"
                         accept=".jpg"
+                        @change="onFileChange"
                     />
+
+                    <div v-if="isImageUplodaded">
+                        <p class="font-black">Imagen Producto:</p>
+
+                        <img 
+                            :src="url"
+                            alt="Nueva Imagen Producto"
+                            class="w-32"
+                        />
+                    </div>
 
                     <FormKit 
                         type="select"
