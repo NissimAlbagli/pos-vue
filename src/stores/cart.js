@@ -36,6 +36,10 @@ export const useCartStore = defineStore('cart', () => {
         items.value = items.value.map( item => item.id === id ? {...item, quantity} : item)
     }
 
+    function removeItem(id) {
+        items.value = items.value.filter(item => item.id !== id);
+    }
+
     const isItemInCart = id => items.value.findIndex(item => item.id === id);
 
     const isProductAvailable = (item, index) => {
@@ -57,6 +61,7 @@ export const useCartStore = defineStore('cart', () => {
         addItem,
         isEmpty,
         checkProductAvailability,
-        updateQuantity
+        updateQuantity,
+        removeItem
     }
 })
