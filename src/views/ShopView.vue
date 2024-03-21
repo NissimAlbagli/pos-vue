@@ -11,7 +11,7 @@
 <template>
     <MainNav />
 
-    <main class="pt-10 lg:flex lg:h-screen lg:overflow-y-hidden">
+    <main class="pt-10 mt-10 lg:flex lg:h-screen lg:overflow-y-hidden">
         <div class="lg:w-2/3 lg:screen lg:overflow-y-scroll pt-10 pb-32 px-10">
             <p v-if="noResults" class="text-center text-4xl">No Hay Productos</p>
 
