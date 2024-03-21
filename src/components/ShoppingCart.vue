@@ -31,7 +31,7 @@
 
         <Amount>
             <template #label>Impuetos:</template>
-            {{ formatCurrency(0) }}
+            {{ formatCurrency(cart.taxes) }}
         </Amount>
 
         <Amount>
