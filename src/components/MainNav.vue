@@ -34,7 +34,7 @@
 
         <nav>
             <Link
-                to="admin"
+                to="sales"
             >
             Administrar
             </Link>
