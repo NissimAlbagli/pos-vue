@@ -6,7 +6,7 @@ export const useCouponsStore = defineStore('coupons', () => {
 
     const cart = useCartStore();
     const couponInput = ref('');
-    const couponValidationMsessage = ref('');
+    const couponValidationMessage = ref('');
     const discountPercentage = ref(0);
     const discount = ref(0);
 
@@ -21,19 +21,26 @@ export const useCouponsStore = defineStore('coupons', () => {
 
     function applyCoupon() {
         if(VALID_COUPONS.some(coupon => coupon.name === couponInput.value)) {
-            couponValidationMsessage.value = 'Aplicando...'
+            couponValidationMessage.value = 'Aplicando...'
 
             setTimeout(() => {
                 discountPercentage.value = VALID_COUPONS.find(coupon => coupon.name === couponInput.value).discount;
-                couponValidationMsessage.value = '¡Descuento Aplicado!'
+                couponValidationMessage.value = '¡Descuento Aplicado!'
             }, 3000)
         } else {
-            couponValidationMsessage.value = 'No existe ese cupón'
+            couponValidationMessage.value = 'No existe ese cupón'
         }
 
         setTimeout(() => {
-            couponValidationMsessage.value = ''
+            couponValidationMessage.value = ''
         }, 6000)
+    }
+
+    function $reset() {
+        couponInput.value = ''
+        couponValidationMessage.value = ''
+        discountPercentage.value = 0
+        discount.value = 0
     }
 
     const isValidCoupon = computed(() => discountPercentage.value > 0);
@@ -42,7 +49,8 @@ export const useCouponsStore = defineStore('coupons', () => {
         couponInput,
         discount,
         applyCoupon,
-        couponValidationMsessage,
+        $reset,
+        couponValidationMessage,
         isValidCoupon
     }
 })

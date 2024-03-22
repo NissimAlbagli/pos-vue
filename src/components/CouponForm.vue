@@ -25,6 +25,6 @@
     </div>
 
     <p class="py-2 text-center font-extrabold">
-        {{  store.couponValidationMsessage }}
+        {{  store.couponValidationMessage }}
     </p>
 </template>
