@@ -1,16 +1,23 @@
-import { ref } from 'vue';
+import { ref, watch, computed } from 'vue';
 import { defineStore }from 'pinia';
+import { useCartStore } from './cart';
 
 export const useCouponsStore = defineStore('coupons', () => {
 
+    const cart = useCartStore();
     const couponInput = ref('');
     const couponValidationMsessage = ref('');
     const discountPercentage = ref(0);
+    const discount = ref(0);
 
     const VALID_COUPONS = [
         {name: '10DESCUENTO', discount: .10},
         {name: '20DESCUENTO', discount: .20}
     ]
+
+    watch(discountPercentage, () => {
+        discount.value = (cart.total * discountPercentage.value).toFixed(2)
+    })
 
     function applyCoupon() {
         if(VALID_COUPONS.some(coupon => coupon.name === couponInput.value)) {
@@ -29,9 +36,13 @@ export const useCouponsStore = defineStore('coupons', () => {
         }, 6000)
     }
 
+    const isValidCoupon = computed(() => discountPercentage.value > 0);
+
     return {
         couponInput,
+        discount,
         applyCoupon,
-        couponValidationMsessage
+        couponValidationMsessage,
+        isValidCoupon
     }
 })
