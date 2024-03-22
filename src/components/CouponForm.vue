@@ -1,5 +1,7 @@
 <script setup>
+    import { useCouponsStore } from '@/stores/coupons';
 
+    const store = useCouponsStore();
 </script>
 
 <template>
@@ -10,12 +12,18 @@
             type="text"
             placeholder="Ingresa un cupón"
             class="p-2 bg-white border-gray-300 w-full"
+            v-model="store.couponInput"
         />
 
         <button
             type="button"
             class="p-3 bg-green-400 hover:bg-green-500 font-bold"
+            @click="store.applyCoupon()"
         >Canjear</button>
 
     </div>
+
+    <p class="py-2 text-center font-extrabold">
+        {{  store.couponValidationMsessage }}
+    </p>
 </template>
