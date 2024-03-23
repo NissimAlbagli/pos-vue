@@ -19,7 +19,7 @@
         <div class="md:w-1/2 lg:w-1/3 bg-white flex justify-center p-5">
             <VueTailwindDatePicker
                 i18n="es-mx"
-                as-single="true"
+                as-single
                 no-input=""
                 v-model="sales.date"
                 :formatter="formater"
@@ -39,13 +39,15 @@
                 Selecciona una Fecha
             </p>
 
-            <div class="space-y-5">
+            <div v-if="sales.salesCollection.length" class="space-y-5">
                 <SaleDetails
                 v-for="sale in sales.salesCollection"
                 :key="sale.id"
                 :sale="sale"
                 />
             </div>
+
+            <p v-else-if="sales.noSales" class="text-lg text-center">No hay ventas en este día</p>
         </div>
 
     </div>

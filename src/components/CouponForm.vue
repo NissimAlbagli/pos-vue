@@ -18,7 +18,7 @@
         <button
             type="button"
             class="p-3 bg-green-400 hover:bg-green-500 font-bold disabled:opacity-30 disabled:bg-green-400"
-            @click="store.applyCoupon()"
+            @click="store.applyCoupon"
             :disabled="store.isValidCoupon"
         >Canjear</button>
 

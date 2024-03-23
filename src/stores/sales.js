@@ -22,9 +22,12 @@ export const useSalesStore = defineStore('sales', () => {
 
     const isDateSelected = computed(() => date.value)
 
+    const noSales = computed(() => !salesCollection.length && date.value)
+
     return {
         date,
         isDateSelected,
-        salesCollection
+        salesCollection,
+        noSales
     }
 })
